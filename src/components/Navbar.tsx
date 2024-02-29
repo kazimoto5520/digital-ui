@@ -23,7 +23,7 @@ const Navbar = () => {
 
     return (
         <div
-            className={`relative bg-gray-800 h-full w-64 flex flex-col justify-between items-center p-4 ${sidebarOpen ? 'w-64' : 'w-16'}`}>
+            className={`relative bg-gray-800 h-full flex flex-col justify-between items-center p-4 duration-300 ${sidebarOpen ? 'w-64' : 'w-16'}`}>
             <button
                 onClick={toggleSidebar}
                 className={`absolute -right-2 top-6 bg-white text-gray-800 border rounded-full border-gray-50 hover:text-blue-400 hover:bg-white duration-300 ${sidebarOpen ? '' : 'rotate-180'}`}>
@@ -34,7 +34,7 @@ const Navbar = () => {
                     <img src="/logo.jpg" alt="logo" className="w-full h-full object-cover rounded-full"/>
                 </div>
                 {sidebarOpen && (
-                    <h1 className="font-bold text-lg">Digital <span className="text-blue-300">UI</span></h1>)}
+                    <h1 className="font-bold text-lg duration-300">Digital <span className="text-blue-300">UI</span></h1>)}
             </div>
             <div className="mt-4 p-4">
                 <ul className="space-y-2">
@@ -46,7 +46,7 @@ const Navbar = () => {
                                     {item.icon}
                                 </span>
 
-                                {sidebarOpen && (<span>{item.name}</span>)}
+                                {sidebarOpen && (<span className="duration-300">{item.name}</span>)}
                             </Link>
 
 
@@ -61,7 +61,7 @@ const Navbar = () => {
                         <img src="/avatar.png" alt="logo" className="w-full h-full object-cover rounded-full"/>
                     </div>
                     {sidebarOpen && (
-                        <div className="flex flex-col">
+                        <div className="flex flex-col duration-300">
                             <h1 className="">Mesha Dani</h1>
                             <p className="text-sm text-gray-300">Vendor</p>
                         </div>
