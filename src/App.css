@@ -7,3 +7,10 @@
 body {
     font-family: Poppins, sans-serif;
 }
+
+.background-login {
+    background-image: url("../public/background-login.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
