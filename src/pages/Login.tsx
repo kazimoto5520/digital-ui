@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import {login} from "../api/auth";
+import {login} from "../api/UserService";
 
 interface Data {
-    email: string,
+    username: string,
     password: string
 }
 
 const Login = () => {
 
     const [data, setData] = useState<Data>({
-        email: '',
+        username: '',
         password: ''
     })
 
@@ -23,10 +23,17 @@ const Login = () => {
     };
 
 
-    const handleSubmit = async (e:any) => {
+   /* const handleSubmit = async (e:any) => {
         e.preventDefault();
         await login(data);
+    }*/
+
+    const handleSubmit =  async (e:any)=> {
+        e.preventDefault();
+        const response = await login(data);
+        console.log(response);
     }
+
     return (
         <div className="flex items-center justify-center h-screen background-login">
             <div className="bg-white p-8 rounded shadow-md w-full max-w-[600px]">
@@ -37,9 +44,9 @@ const Login = () => {
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Username</label>
                         <input
                             type="text"
-                            id="email"
-                            name="email"
-                            value={data.email}
+                            id="username"
+                            name="username"
+                            value={data.username}
                             onChange={handleChange}
                             className="mt-1 p-2 border rounded-md w-full"
                             placeholder="Enter your username"
