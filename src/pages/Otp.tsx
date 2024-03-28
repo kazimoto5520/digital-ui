@@ -1,21 +1,19 @@
 import React, {useState} from 'react';
+import {toast, ToastContainer} from "react-toastify";
 import {Link, useNavigate} from "react-router-dom";
 import {login} from "../api/UserService";
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+
 
 interface Data {
-    username: string,
-    password: string
-}
+    otp: string,
 
-const Login = () => {
+}
+const Otp = () => {
 
     const navigate = useNavigate();
 
     const [data, setData] = useState<Data>({
-        username: '',
-        password: ''
+        otp: ''
     })
 
     const [message, setMessage] = useState<any>("");
@@ -35,12 +33,7 @@ const Login = () => {
             console.log(response);
 
             if (response.status === 200){
-                setMessage(toast.success(response.data?.message, {
-                    position: "top-right"
-                }));
-                setTimeout(() => {
-                    navigate('/otp');
-                }, 2000);
+                navigate("/otp")
             }
         }catch (e:any) {
             setMessage(toast.error(e?.response?.data?.message, {
@@ -53,34 +46,21 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center h-screen background-login">
-            <ToastContainer />
+            <ToastContainer/>
             <div className="bg-white p-8 rounded shadow-md w-full max-w-[600px]">
-                <h1 className="text-3xl font-bold mb-4">Login</h1>
+                <h1 className="text-3xl font-bold mb-4">Submit OTP</h1>
 
                 <form className="space-y-4">
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Username</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Please enter otp to login</label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            value={data.username}
+                            id="otp"
+                            name="otp"
+                            value={data.otp}
                             onChange={handleChange}
                             className="mt-1 p-2 border rounded-md w-full"
-                            placeholder="Enter your username"
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={data.password}
-                            onChange={handleChange}
-                            className="mt-1 p-2 border rounded-md w-full"
-                            placeholder="Enter your password"
+                            placeholder="Enter your OTP"
                         />
                     </div>
 
@@ -89,17 +69,18 @@ const Login = () => {
                             onClick={handleSubmit}
                             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
                         >
-                            Login
+                            Submit
                         </button>
                     </div>
                 </form>
 
-                <div className="mt-4 text-sm text-gray-600">
-                    Don't have an account? <Link to="/register" className="text-blue-500 hover:underline">Register</Link>
-                </div>
+                {/*<div className="mt-4 text-sm text-gray-600">
+                    Don't have an account? <Link to="/register"
+                                                 className="text-blue-500 hover:underline">Register</Link>
+                </div>*/}
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Otp;

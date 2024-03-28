@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Customers from "./pages/Customers";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import Register from "./pages/Register";
+import Otp from "./pages/Otp";
 
 
 const queryClient = new QueryClient()
@@ -18,7 +19,7 @@ function App() {
     const location = useLocation();
 
     // Check if the current route is /login or /register
-    const hideNavbar = location.pathname === '/login' || location.pathname === '/register';
+    const hideNavbar = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/otp';
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/analytics" element={<Analytics/>}/>
                     <Route path="/customers" element={<Customers/>}/>
                     <Route path="/login" element={<Login />}/>
+                    <Route path="/otp" element={<Otp />}/>
                     <Route path="/register" element={<Register />}/>
                     <Route path="*" element={<PageNotFound/>}/>
                 </Routes>
