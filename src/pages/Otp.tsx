@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {toast, ToastContainer} from "react-toastify";
 import {Link, useNavigate} from "react-router-dom";
 import {login} from "../api/UserService";
+import {LoginContext} from "../lib/LoginContext";
 
 
 interface Data {
@@ -15,6 +16,8 @@ const Otp = () => {
     const [data, setData] = useState<Data>({
         otp: ''
     })
+
+    const {user} = useContext(LoginContext);
 
     const [message, setMessage] = useState<any>("");
 
@@ -43,6 +46,8 @@ const Otp = () => {
         }
 
     }
+
+    console.log(user)
 
     return (
         <div className="flex items-center justify-center h-screen background-login">

@@ -11,6 +11,7 @@ import Customers from "./pages/Customers";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import Register from "./pages/Register";
 import Otp from "./pages/Otp";
+import {LoginProvider} from "./lib/LoginContext";
 
 
 const queryClient = new QueryClient()
@@ -30,7 +31,11 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/analytics" element={<Analytics/>}/>
                     <Route path="/customers" element={<Customers/>}/>
-                    <Route path="/login" element={<Login />}/>
+                    <Route path="/login" element={
+                        <LoginProvider>
+                            <Login />
+                        </LoginProvider>
+                    }/>
                     <Route path="/otp" element={<Otp />}/>
                     <Route path="/register" element={<Register />}/>
                     <Route path="*" element={<PageNotFound/>}/>

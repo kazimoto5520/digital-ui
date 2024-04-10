@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {login} from "../api/UserService";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import {LoginContext, LoginProvider} from "../lib/LoginContext";
 
 interface Data {
     username: string,
@@ -17,6 +18,8 @@ const Login = () => {
         username: '',
         password: ''
     })
+
+    const {user,setUser} = useContext(LoginContext);
 
     const [message, setMessage] = useState<any>("");
 
@@ -38,8 +41,12 @@ const Login = () => {
                 setMessage(toast.success(response.data?.message, {
                     position: "top-right"
                 }));
+
+
                 setTimeout(() => {
-                    navigate('/otp');
+                    navigate('/otp', {
+                        state: setUser(response?.data?.data)
+                    } );
                 }, 2000);
             }
         }catch (e:any) {
